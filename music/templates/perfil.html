@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+{% load static %}  
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+
+<div id="caja0">
+  {% for x in musicos %}
+    {% if x.usuario == user.username %}
+      <div id="caja1"> 
+        <h4>{{user.username}}</h4> 
+        <div id="caja_editar">
+          <a href="{{user.username}}/editar/" style="float: left;">
+            <button id="boton2">Editar</button>
+          </a>
+          <a href="{{user.username}}/eliminar/" style="float: left;">
+            <button id="boton2">Eliminar</button>
+          </a>
+        </div>
+        <br><hr>
+        <div class="row">
+          <div class="col-lg-4" id="cajares">
+            <div id="caja_perfil">
+              <img src="{{x.imagen.url}}" width="100%" height="width" style="border-radius: 5px;">
+            </div>
+          </div>
+          <div class="col-lg-4" id="cajares"> 
+            <label>Nombre</label>
+            <input value="{{x.nombre}}" readonly>
+            <label>Sexo</label>
+            <input value="{{x.sexo}}" readonly>
+            <label>Edad</label>
+            <input value="{{x.edad}}" readonly>
+            <label>Región</label>
+            <input value="{{x.region}}" readonly>
+          </div>
+          <div class="col-lg-4" id="cajares">
+            <label>Comuna</label>
+            <input value="{{x.comuna}}" readonly>
+            <label>Disponibilidad</label>
+            <input value="{{x.disponibilidad}}" readonly>
+            <label>Carrera</label>
+            <input value="{{x.carrera}}" readonly>
+            <label>Banda</label>
+            <input value="{{x.banda}}" readonly>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div id="caja1"> 
+        <br>
+        <div class="row">
+          <div class="col-lg-4" id="cajares">
+            <label>Instrumentos</label>
+            <input value="{{x.instrumento1}}" readonly>
+            <input value="{{x.instrumento2}}" readonly>
+            <input value="{{x.instrumento3}}" readonly>
+          </div>
+          <div class="col-lg-4" id="cajares">
+            <label>Estilos favoritos</label>
+            <input value="{{x.estilo1}}" readonly>
+            <input value="{{x.estilo2}}" readonly>
+            <input value="{{x.estilo3}}" readonly>
+            <br>
+          </div>
+          <div class="col-lg-4" id="cajares">
+            <label>Artistas favoritos</label>
+            <input value="{{x.artista1}}" readonly>
+            <input value="{{x.artista2}}" readonly>
+            <input value="{{x.artista3}}" readonly>
+            <br>
+          </div>
+        </div>
+      </div>  
+      <br> 
+    {% else %}
+    {% endif %}
+  {% endfor %} 
+  {% if musico_encontrado %}
+  {% else %}
+    <div id="caja1"> 
+      <h4 style="margin-right: 30px;">{{user.username}}</h4> 
+      <div id="caja_editar">
+        <a href="crear/">
+          <button id="boton2">Crear</button>
+        </a>
+      </div>
+      <br><hr>
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+          <div id="caja_perfil">
+            <img id="img_perfil" src="{% static 'Imagenes/usuario2.png' %}">
+          </div>
+        </div>
+        <div class="col-lg-4" id="cajares"> 
+          <label>Nombre</label>
+          <input value="" readonly>
+          <label>Sexo</label>
+          <input value="" readonly>
+          <label>Edad</label>
+          <input value="" readonly>
+          <label>Región</label>
+          <input value="" readonly>
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Comuna</label>
+          <input value="" readonly>
+          <label>Disponibilidad</label>
+          <input value="" readonly>
+          <label>Carrera</label>
+          <input value="" readonly>
+          <label>Banda</label>
+          <input value="" readonly>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div id="caja1"> 
+      <br>
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+          <label>Instrumentos</label>
+          <input value="" readonly>
+          <input value="" readonly>
+          <input value="" readonly>
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Estilos favoritos</label>
+          <input value="" readonly>
+          <input value="" readonly>
+          <input value="" readonly>
+          <br>
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Artistas favoritos</label>
+          <input value="" readonly>
+          <input value="" readonly>
+          <input value="" readonly>
+          <br>
+        </div>
+      </div>
+    </div> 
+    <br> 
+  {% endif %}
+   
+  {% for x in multimedias %}
+    {% if x.usuario == user.username %} 
+    <div id="caja1"> <!--Caja de galeria multimedia-->
+      <div id="caja_editar">
+        <a href="{{user.username}}/editar_multimedia/" style="float: left;">
+          <button id="boton2">Editar</button>
+        </a>
+        <a href="{{user.username}}/eliminar_multimedia/" style="float: left;">
+          <button id="boton2">Eliminar</button>
+        </a>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+          <label>Imágenes</label>
+          <div id="caja3">
+            {% if x.imagen1 %}  
+            <button style="margin: 0%; padding: 0%;" onclick="AgrandarImagen()">
+              <img id="imgx1" src="{{x.imagen1.url}}" width="80px" height="80px">
+            </button>
+            
+            {% endif %}
+            {% if x.imagen2 %}
+            <button style="margin: 0%; padding: 0%;" onclick="AgrandarImagen()">
+              <img id="imgx2" src="{{x.imagen2.url}}" width="80px" height="80px">
+            </button>
+            {% else %}
+            {% endif %}
+            {% if x.imagen3 %}
+            <button style="margin: 0%; padding: 0%;" onclick="AgrandarImagen()">
+              <img id="imgx2" src="{{x.imagen3.url}}" width="80px" height="80px">
+            </button>
+            {% else %}
+            {% endif %}
+            {% if x.imagen4 %}
+            <button style="margin: 0%; padding: 0%;" onclick="AgrandarImagen()">
+              <img id="imgx2" src="{{x.imagen4.url}}" width="80px" height="80px">
+            </button>
+            {% else %}
+            {% endif %}
+            {% if x.imagen5 %}
+            <button style="margin: 0%; padding: 0%;" onclick="AgrandarImagen()">
+              <img id="imgx2" src="{{x.imagen5.url}}" width="80px" height="80px">
+            </button>
+            {% else %}
+            {% endif %}
+            
+          </div>
+          <br>
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->              
+          
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Videos</label>
+          <div id="caja3">
+            {% if x.video1 %}
+            <video src="{{ x.video1.url }}" width="80px" height="80px" controls>
+                <source src="{{ x.video1.url }}" type="video/mp4">
+                <source src="{{ x.video1.url }}" type="video/ogg">
+                Your browser does not support HTML video.
+            </video>
+            {% endif %}
+        
+            {% if x.video2 %}
+            <video src="{{ x.video2.url }}" width="80px" height="80px" controls>
+                <source src="{{ x.video2.url }}" type="video/mp4">
+                <source src="{{ x.video2.url }}" type="video/ogg">
+                Your browser does not support HTML video.
+            </video>
+            {% endif %}
+        
+            {% if x.video3 %}
+            <video src="{{ x.video3.url }}" width="80px" height="80px" controls>
+                <source src="{{ x.video3.url }}" type="video/mp4">
+                <source src="{{ x.video3.url }}" type="video/ogg">
+                Your browser does not support HTML video.
+            </video>
+            {% endif %}
+        
+            {% if x.video4 %}
+            <video src="{{ x.video4.url }}" width="80px" height="80px" controls>
+                <source src="{{ x.video4.url }}" type="video/mp4">
+                <source src="{{ x.video4.url }}" type="video/ogg">
+                Your browser does not support HTML video.
+            </video>
+            {% endif %}
+        
+            {% if x.video5 %}
+            <video src="{{ x.video5.url }}" width="80px" height="80px" controls>
+                <source src="{{ x.video5.url }}" type="video/mp4">
+                <source src="{{ x.video5.url }}" type="video/ogg">
+                Your browser does not support HTML video.
+            </video>
+            {% endif %}
+        
+          </div>
+          <br> 
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->    
+        
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Audios</label>
+          <div id="caja3">
+            {% if x.audio1 %}
+            <audio src="{{ x.audio1.url }}" controls>
+                <source src="{{ x.audio1.url }}" type="audio/ogg">
+                <source src="{{ x.audio1.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        
+            {% if x.audio2 %}
+            <audio src="{{ x.audio2.url }}" controls>
+                <source src="{{ x.audio2.url }}" type="audio/ogg">
+                <source src="{{ x.audio2.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        
+            {% if x.audio3 %}
+            <audio src="{{ x.audio3.url }}" controls>
+                <source src="{{ x.audio3.url }}" type="audio/ogg">
+                <source src="{{ x.audio3.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        
+            {% if x.audio4 %}
+            <audio src="{{ x.audio4.url }}" controls>
+                <source src="{{ x.audio4.url }}" type="audio/ogg">
+                <source src="{{ x.audio4.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        
+            {% if x.audio5 %}
+            <audio src="{{ x.audio5.url }}" controls>
+                <source src="{{ x.audio5.url }}" type="audio/ogg">
+                <source src="{{ x.audio5.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        
+          </div>
+          <br>  
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->   
+        </div>
+      </div>
+    </div>
+    <br>  
+    {% else %}
+    {% endif %}
+  {% endfor %}
+  {% if multimedia_encontrado %} 
+  {% else %}  
+    <div id="caja1"> 
+      <div id="caja_editar">
+        <a href="crear_multimedia/">
+          <button id="boton2" style="padding-bottom: -20px;">Crear</button>
+        </a>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+          <label>Imágenes</label>
+          <div id="caja3">
+          </div>
+          <br>
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->              
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Videos</label>
+          <div id="caja3">
+          </div>
+          <br> 
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->    
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Audios</label>
+          <div id="caja3">
+          </div>
+          <br>  
+          <!--<button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>-->   
+        </div>
+      </div>
+    </div> 
+    <br>
+  {% endif %}
+  {% for x in datoss %}
+    {% if x.usuario == user.username %}
+    <div id="caja1">
+      <div id="caja_editar">
+        <a href="{{user.username}}/editar_datos/" style="float: left;">
+          <button id="boton2">Editar</button>
+        </a>
+        <a href="{{user.username}}/eliminar_datos/" style="float: left;">
+          <button id="boton2">eliminar</button>
+        </a>
+      </div>
+      <br>
+      <h2>Otros datos</h2>
+      <div id="caja3">
+        <br>
+        <h1>{{x.otros_datos}}</h1>
+      </div>
+      <br><br><br><br><br><br><br>
+    </div> 
+    <br><br> 
+    {% else %}
+    {% endif %}
+  {% endfor %}
+  {% if datos_encontrado %}
+  {% else %}   
+    <div id="caja1">
+      <div id="caja_editar">
+        <a href="crear_datos/">
+          <button id="boton2">Crear</button>
+        </a>
+      </div>
+      <br>
+      <h2>Otros datos</h2>
+      <div id="caja3">
+        <br>
+        <h1></h1>
+      </div>
+      <br><br><br><br><br><br><br>
+    </div> 
+    <br><br> 
+  {% endif %}
+ </div> 
+ {% for x in multimedias %}
+    {% if x.usuario == user.username %}
+  <div id="carousel1" class="carousel slide carousel-fade" data-ride="carousel" style="display: none; height: 100%;">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <center><div id="caja_carr3">
+          {% if x.imagen1 %}
+              <img src="{{ x.imagen1.url }}" width="100%" height="100%">
+            {% else %}
+            {% endif %}
+        </div></center>
+      </div>
+      <div class="carousel-item">
+        <center><div id="caja_carr3">
+          {% if x.imagen2 %}
+              <img src="{{ x.imagen2.url }}" width="100%" height="100%">
+            {% else %}
+            {% endif %}
+        </div></center>
+      </div>
+      <div class="carousel-item">
+        <center><div id="caja_carr3">
+          {% if x.imagen3 %}
+              <img src="{{ x.imagen3.url }}" width="100%" height="100%">
+            {% else %}
+            {% endif %}
+        </div></center>
+      </div>
+      <div class="carousel-item">
+        <center><div id="caja_carr3">
+          {% if x.imagen4 %}
+              <img src="{{ x.imagen4.url }}" width="100%" height="100%">
+            {% else %}
+            {% endif %}
+        </div></center>
+      </div>
+      <div class="carousel-item">
+        <center><div id="caja_carr3">
+          {% if x.imagen5 %}
+              <img src="{{ x.imagen5.url }}" width="100%" height="100%">
+            {% else %}
+            {% endif %}
+        </div></center>
+      </div>
+    </div>
+    <!--Controles NEXT y PREV-->
+    <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--Controles de indicadores-->
+    <br>
+    <center><button id="boton2" style="width: 50%;" onclick="Volver()">Volver</button></center>
+  </div>
+  {% else %}
+    {% endif %}
+  {% endfor %}
+  <script>
+    function AgrandarImagen()
+    {
+      
+      document.getElementById("caja0").style.display = "none"
+      document.getElementById("carousel1").style.display = "block"
+      
+      
+    }
+  </script>
+  <script>
+    function Volver()
+    {
+      
+      document.getElementById("caja0").style.display = "block"
+      document.getElementById("carousel1").style.display = "none"
+      
+      
+    }
+  </script>
+  <style>
+    #caja_carr1 img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  
+{% endblock %}

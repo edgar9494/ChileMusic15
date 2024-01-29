@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}  
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+<div id="caja0">
+    <div id="caja1"> 
+      <h4>Banda xyx</h4>
+      <br>
+      <hr>
+      <center><img id="imagen_portada" src="{% static 'Imagenes/Perfil7.png' %}" width="80%" height="400px"></center> 
+    </div>    
+    <br>
+  
+    <div id="caja1">
+      <h4>Integrantes</h4>
+      <br>
+      <hr>
+      <center>
+        <div style="display: flex; text-align: center;">
+          <div style="margin-left: 50px; margin-left: 50px;">
+            <center><img id="imagen_portada" src="{% static 'Imagenes/Perfil1.jpg' %}" width="100px" height="100px"></center>
+            <center><h1>Camilo_123</h1></center>
+          </div>
+          <div style="margin-left: 50px; margin-left: 50px;">
+            <center><img id="imagen_portada" src="{% static 'Imagenes/Perfil2.jpg' %}" width="100px" height="100px"></center>
+            <center><h1>Nicolas_123</h1></center>
+          </div>
+          <div style="margin-left: 50px; margin-left: 50px;">
+            <center><img id="imagen_portada" src="{% static 'Imagenes/Perfil3.jpg' %}" width="100px" height="100px"></center>
+            <center><h1>Gabriel2322</h1></center>
+          </div>
+        </div>
+      </center>
+        
+
+    </div> 
+    <br>  
+    <div id="caja1"> <!--Caja de galeria multimedia-->
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+          <label>Imágenes</label>
+          <div id="caja2">
+            <input type="file" accept="image/png, image/jpeg" multiple style="color: transparent;">
+             
+          </div>
+          <br>
+          <button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>              
+          
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Videos</label>
+          <div id="caja2">
+            
+          </div>
+          <br> 
+          <button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>    
+        
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <label>Audios</label>
+          
+          <div id="caja2">
+            
+          </div>
+          <br>  
+          <button id="boton1"><h1>Agregar</h1></button>
+          <button id="boton1"><h1>Eliminar</h1></button>   
+        </div>
+      </div>
+    </div> 
+    <br>  
+    <div id="caja1">
+      <div class="row">
+        <div class="col-lg-4" id="cajares">
+        </div>
+        <div class="col-lg-4" id="cajares">
+          <h1>Eventos</h1>
+        </div>
+        <div class="col-lg-4" id="cajares">
+        </div>
+      </div>
+    </div> 
+    <br>
+    <div id="caja1"> <!--Caja de otros datos para poner una descripción-->
+      <h2>Otros datos</h2>
+      <div id="caja3">
+        <br>
+        <h2>Esta es una descripción sobre la banda</h2>
+      </div>
+      
+      <div id="caja_redes">
+        <img src="{% static 'Imagenes/Icono whatsapp.png' %}" width="50px" height="50px" style="border: 0px solid white; padding: 2px; border-radius: 15px;">
+        <img src="{% static 'Imagenes/Icono Instagram.png' %}" width="50px" height="50px" style="border: 0px solid white;">
+        <img src="{% static 'Imagenes/Icono facebook.png' %}" width="50px" height="50px" style="border: 0px solid white;">
+        <img src="{% static 'Imagenes/Icono Spotify.png' %}" width="50px" height="50px" style="border: 0px solid white; padding: 2px;">
+        <img src="{% static 'Imagenes/Icono youtube 1.png' %}" width="50px" height="50px" style="border: 0px solid white;">
+        <img src="{% static 'Imagenes/Icono correo.png' %}" width="50px" height="50px" style="border: 0px solid white;">
+      </div>
+      <br><br>
+    </div> 
+    <br>  
+    <button id="boton2" style="width: 200px;"><h1>Guardar cambios</h1></button>
+    <button id="boton2" style="width: 200px;"><h1>Secciones ocultas</h1></button>  
+    <br><br>
+  </div>      
+{% endblock %}

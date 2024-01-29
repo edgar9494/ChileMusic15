@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+<div class="row">
+    <div class="col-lg-4" id="caja_resp"></div>
+    <div class="col-lg-4" id="caja_resp">
+        <p style="color: rgb(255, 255, 255);">¿Estas seguro de que quieres eliminar los datos?</p>
+        <br>
+        <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" action="" value="Eliminar">
+        </form>
+    </div>
+    <div class="col-lg-4" id="caja_resp"></div>
+</div>
+
+
+{%endblock%}

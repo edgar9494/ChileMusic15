@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+
+<div id="caja1"> 
+    <div class="row">
+      <div class="col-lg-4" id="cajares">
+        <h5>Músicos</h5>
+        <input id="check2" type="checkbox">
+        <h5>Sonidistas</h5>
+        <input id="check2" type="checkbox">
+        <h5>Audiovisuales</h5>
+        <input id="check2" type="checkbox">
+      </div><br>
+      <div class="col-lg-4" id="cajares">
+        <h5>Eventos</h5>
+        <input id="check2" type="checkbox">
+        <h5>Salas</h5>
+        <input id="check2" type="checkbox">
+        <h5>Tiendas</h5>
+        <input id="check2" type="checkbox">
+      </div><br>
+      <div class="col-lg-4" id="cajares">
+        <button id="boton2" style="margin-top: -5px; margin-bottom: 10px;">Buscar</button>
+      </div><br>
+    </div>
+    <div id="caja_mapa">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d850689.3889873757!2d-71.30253590432802!3d-33.605163691623154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96626f6a7df81e51%3A0x60cdc26d444b83da!2sRegi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1658802634525!5m2!1ses!2scl" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>   
+{% endblock %}

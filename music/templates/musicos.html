@@ -1,0 +1,452 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'javascript/funciones.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+
+<div id="caja0">
+  <div id="caja_buscar">
+    <h3>Buscador</h3>
+    <hr>
+    <label>Sexo</label>
+    <select id="sexo" name="sexo">
+      <option value="---">---</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <br>
+    <label>Edad</label>
+    <input type="number" id ="edad" name="edad" placeholder="---">
+    <br>
+    <label>Carrera</label>
+    <select id="carrera" name="carrera">
+      <option value="---">---</option>
+      <option value="Ninguna">Ninguna</option>
+      <option value="Teoría musical">Teoría musical</option>
+      <option value="Producción musical">Producción musical</option>
+      <option value="Técnico en sonido">Técnico en sonido</option>
+      <option value="Ingeniería en sonido">Ingeniería en sonido</option>
+      <option value="Comunicación audiovisual">Comunicación audiovisual</option>
+      <option value="Otra">Otra</option>
+     </select>
+    <br>
+    <label>Región</label>
+    <select id="region" name="region">
+      <option value="---">---</option>
+      <option value="I Región">I Región</option>
+      <option value="II Región">II Región</option>
+      <option value="III Región">III Región</option>
+      <option value="IV Región">IV Región</option>
+      <option value="V Regió">V Región</option>
+      <option value="VI Región">VI Región</option>
+      <option value="VII Región">VII Región</option>
+      <option value="VIII Región">VIII Región</option>
+      <option value="IX Región">IX Región</option>
+      <option value="X Región">X Región</option>
+      <option value="XI Región">XI Región</option>
+      <option value="XII Región">XII Región</option>
+      <option value="Región Metropolitana">Región Metropolitana</option>
+      <option value="XIV Región">XIV Región</option>
+      <option value="XV Región">XV Región</option>
+      <option value="XVI Región">XVI Región</option>
+    </select>
+    <br>
+    <label>Comuna</label>
+    <select id="comu" name="comu">
+      <option value="---">---</option>
+      <option value="Santiago">Santiago</option>
+      <option value="Conchalí">Conchalí</option>
+      <option value="Huechuraba">Huechuraba</option>
+      <option value="Independencia">Independencia</option>
+      <option value="Quilicura">Quilicura</option>
+      <option value="Recoleta">Recoleta</option>
+      <option value="Renca">Renca</option>
+      <option value="Las Condes">Las Condes</option>
+      <option value="Lo Barnechea">Lo Barnechea</option>
+      <option value="Providencia">Providencia</option>
+      <option value="Vitacura">Vitacura</option>
+      <option value="La Reina">La Reina</option>
+      <option value="Macul">Macul</option>
+      <option value="Ñuñoa">Ñuñoa</option>
+      <option value="Peñalolén">Peñalolén</option>
+      <option value="La Florida">La Florida</option>
+      <option value="La Granja">La Granja</option>
+      <option value="El Bosque">El Bosque</option>
+      <option value="La Cisterna">La Cisterna</option>
+      <option value="La Pintana">La Pintana</option>
+      <option value="San Ramón">San Ramón</option>
+      <option value="Lo Espejo">Lo Espejo</option>
+      <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
+      <option value="San Joaquín">San Joaquín</option>
+      <option value="San Miguel">San Miguel</option>
+      <option value="Cerrillos">Cerrillos</option>
+      <option value="Estación Central">Estación Central</option>
+      <option value="Maipú">Maipú</option>
+      <option value="Cerro Navia">Cerro Navia</option>
+      <option value="Lo Prado">Lo Prado</option>
+      <option value="Pudahuel">Pudahuel</option>
+      <option value="Quinta Normal">Quinta Normal</option>
+    </select>
+    <br>
+    <label>Disponibilidad</label>
+    <select id="disp" name="disponibilidad">
+      <option value="---">---</option>
+      <option value="Lunes">Lunes</option>
+      <option value="Martes">Martes</option>
+      <option value="Miércoles">Miércoles</option>
+      <option value="Jueves">Jueves</option>
+      <option value="Viernes">Viernes</option>
+      <option value="Sábado">Sábado</option>
+      <option value="Domingo">Domingo</option>
+      <option value="Fin de semana">Fin de semana</option>
+    </select>
+    <br>
+    <label>Instrumento</label>
+    <select id="ins" name="instrumento">
+      <option value="---">---</option>
+      <option value="Voz">Voz</option>
+      <option value="Guitarra">Guitarra</option>
+      <option value="Bajo">Bajo</option>
+      <option value="Batería">Batería</option>
+      <option value="Sintetizador">Sintetizador</option>
+      <option value="Piano">Piano</option>
+      <option value="Violín">Violín</option>
+      <option value="Viola">Viola</option>
+      <option value="Chelo">Chelo</option>
+      <option value="Contrabajo">Contrabajo</option>
+      <option value="Trompeta">Trompeta</option>
+      <option value="Trombon">Trombon</option>
+      <option value="Flauta">Flauta</option>
+      <option value="Clarinete">Clarinete</option>
+      <option value="Oboe">Oboe</option>
+      <option value="Arpa">Arpa</option>
+      <option value="Armonica">Armonica</option>
+      <option value="Acordeon">Acordeon</option>
+    </select>
+    <br>
+    <label>Estilo</label>
+    <select id="estilo" name="estilo">
+      <option value="---">---</option>
+      <option value="Pop">Pop</option>
+      <option value="Rock">Rock</option>
+      <option value="Metal">Metal</option>
+      <option value="Electrónica">Electrónica</option>
+      <option value="Clásica">Clásica</option>
+      <option value="Blues">Blues</option>
+      <option value="Jazz">Jazz</option>
+      <option value="Hip hop">Hip hop</option>
+      <option value="Trap">Trap</option>
+      <option value="Reggaeton">Reggaeton</option>
+      <option value="Reggae">Reggae</option>
+      <option value="Cumbia">Cumbia</option>
+    </select>
+    <br>
+    <label>Artista</label>
+    <input type="text" id="artista" name="artista" placeholder="---"> 
+    <br><br>
+    <button id="boton2" onclick="filtrarTabla()">Buscar</button>
+    <br><br>
+  </div>
+    
+  <div id="caja_buscar2">
+    <table id="tabla-musicos">
+      <tr id="tr1"></tr>
+      {% for x in musicos %}
+      <tr>
+        <td style="display: none;">{{x.usuario}}</td>
+        <td style="display: none;">{{x.sexo}}</td>
+        <td style="display: none;">{{x.edad}}</td>
+        <td style="display: none;">{{x.carrera}}</td>
+        <td style="display: none;">{{x.region}}</td>
+        <td style="display: none;">{{x.comuna}}</td>
+        <td style="display: none;">{{x.disponibilidad}}</td>
+        <td style="display: none;">{{x.instrumento1}}</td>
+        <td style="display: none;">{{x.estilo1}}</td>
+        <td style="display: none;">{{x.artista1}}</td>
+        <td style="border: 0px solid gray;">
+          <div id="caja1">
+            <h4>{{x.usuario}}</h4>
+            <div id="caja_editar">
+              {% if user.is_authenticated %}
+                {% if user.username != x.usuario %}
+                  <a href="/musicos/contactar/?contacto={{ x.usuario }}" target="_self">
+                    <button id="boton3">Contactar</button>
+                  </a>
+                {% endif %}
+              {% else %}
+                <a><button id="boton3" onclick="DebeIniciar()">Contactar</button></a>
+              {% endif %}
+            </div>
+            <br><hr>
+            <div class="row">
+              <div class="col-lg-4" id="caja_resp">
+                <div id="caja_perfil">
+                  <img id="img_perfil" src="{{x.imagen.url}}">
+                </div>
+              </div>
+              <div class="col-lg-4" id="caja_resp">
+                <label>Nombre</label>
+                <input value="{{x.nombre}}" readonly>
+                <label>Sexo</label>
+                <input value="{{x.sexo}}" readonly>
+                <label>Edad</label>
+                <input value="{{x.edad}}" readonly>
+                <label>Región</label>
+                <input value="{{x.region}}" readonly>
+              </div>
+              <div class="col-lg-4" id="caja_resp">
+                <label>Comuna</label>
+                <input value="{{x.comuna}}" readonly>
+                <label>Disponibilidad</label>
+                <input value="{{x.disponibilidad}}" readonly>
+                <label>Carrera</label>
+                <input value="{{x.carrera}}" readonly>
+                <label>Banda</label>
+                <input value="{{x.banda}}" readonly>
+              </div>
+            </div>
+          </div>
+          <div id="caja1"> 
+            <br>
+            <div class="row">
+              <div class="col-lg-4" id="caja_resp">
+                <label>Instrumentos</label>
+                <input value="{{x.instrumento1}}" readonly>
+                <input value="{{x.instrumento2}}" readonly>
+                <input value="{{x.instrumento3}}" readonly>
+              </div>
+              <div class="col-lg-4" id="caja_resp">
+                <label>Estilos favoritos</label>
+                <input value="{{x.estilo1}}" readonly>
+                <input value="{{x.estilo2}}" readonly>
+                <input value="{{x.estilo3}}" readonly>
+                <br>
+              </div>
+              <div class="col-lg-4" id="caja_resp">
+                <label>Artistas favoritos</label>
+                <input value="{{x.artista1}}" readonly>
+                <input value="{{x.artista2}}" readonly>
+                <input value="{{x.artista3}}" readonly>
+                <br>
+              </div>
+            </div>
+          </div>   
+          {% for y in multimedias %}
+            {% if y.usuario == x.usuario %}
+              <div id="caja1">
+                <br>
+                <div class="row">
+                  <div class="col-lg-4" id="caja_resp">
+                    <label>Imágenes</label>
+                    <div id="caja3">
+                      {% if y.imagen1 %}
+                        <button id="boton_imagenes" onclick="AgrandarImagen2()">
+                          <img id="img_galeria" src="{{y.imagen1.url}}">
+                        </button>
+                      {% endif %}
+                      {% if y.imagen2 %}
+                        <button id="boton_imagenes" onclick="AgrandarImagen2()">
+                          <img id="img_galeria" src="{{y.imagen2.url}}">
+                        </button>
+                      {% endif %}
+                      {% if y.imagen3 %}
+                        <button id="boton_imagenes" onclick="AgrandarImagen2()">
+                          <img id="img_galeria" src="{{y.imagen3.url}}">
+                        </button>
+                      {% endif %}
+                      {% if y.imagen4 %}
+                        <button id="boton_imagenes" onclick="AgrandarImagen2()">
+                          <img id="img_galeria" src="{{y.imagen4.url}}">
+                        </button>
+                      {% endif %}
+                      {% if y.imagen5 %}
+                        <button id="boton_imagenes" onclick="AgrandarImagen2()">
+                          <img id="img_galeria" src="{{y.imagen5.url}}">
+                        </button>
+                      {% else %}
+                      {% endif %}
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col-lg-4" id="caja_resp">
+                    <label>Videos</label>
+                    <div id="caja3">
+                      {% if y.video1 %}
+                        <video id="video" src="{{ y.video1.url }}" controls>
+                          <source src="{{ y.video1.url }}" type="video/mp4">
+                          <source src="{{ y.video1.url }}" type="video/ogg">
+                          Your browser does not support HTML video.
+                        </video>
+                      {% endif %}
+                      {% if y.video2 %}
+                        <video id="video" src="{{ y.video2.url }}" controls>
+                          <source src="{{ y.video2.url }}" type="video/mp4">
+                          <source src="{{ y.video2.url }}" type="video/ogg">
+                          Your browser does not support HTML video.
+                        </video>
+                      {% endif %}
+                      {% if y.video3 %}
+                        <video id="video" src="{{ y.video3.url }}" controls>
+                          <source src="{{ y.video3.url }}" type="video/mp4">
+                          <source src="{{ y.video3.url }}" type="video/ogg">
+                          Your browser does not support HTML video.
+                        </video>
+                      {% endif %}
+                      {% if y.video4 %}
+                        <video id="video" src="{{ y.video4.url }}" controls>
+                          <source src="{{ y.video4.url }}" type="video/mp4">
+                          <source src="{{ y.video4.url }}" type="video/ogg">
+                          Your browser does not support HTML video.
+                        </video>
+                      {% endif %}
+                      {% if y.video5 %}
+                        <video id="video" src="{{ y.video5.url }}" controls>
+                          <source src="{{ y.video5.url }}" type="video/mp4">
+                          <source src="{{ y.video5.url }}" type="video/ogg">
+                          Your browser does not support HTML video.
+                        </video>
+                      {% endif %}
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col-lg-4" id="caja_resp">
+                    <label>Audios</label>
+                    <div id="caja3">
+                      {% if y.audio1 %}
+                        <audio src="{{ y.audio1.url }}" controls>
+                          <source src="{{ y.audio1.url }}" type="audio/ogg">
+                          <source src="{{ y.audio1.url }}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                      {% endif %}
+                      {% if y.audio2 %}
+                        <audio src="{{ y.audio2.url }}" controls>
+                          <source src="{{ y.audio2.url }}" type="audio/ogg">
+                          <source src="{{ y.audio2.url }}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                      {% endif %}
+                      {% if y.audio3 %}
+                        <audio src="{{ y.audio3.url }}" controls>
+                          <source src="{{ y.audio3.url }}" type="audio/ogg">
+                          <source src="{{ y.audio3.url }}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                      {% endif %}
+                      {% if y.audio4 %}
+                        <audio src="{{ y.audio4.url }}" controls>
+                          <source src="{{ y.audio4.url }}" type="audio/ogg">
+                          <source src="{{ y.audio4.url }}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                      {% endif %}
+                      {% if y.audio5 %}
+                        <audio src="{{ y.audio5.url }}" controls>
+                          <source src="{{ y.audio5.url }}" type="audio/ogg">
+                          <source src="{{ y.audio5.url }}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                      {% endif %}
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+              <div id="carousel1" class="carousel slide carousel-fade" data-ride="carousel" style="display: none; height: 500px;">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <center>
+                      <div id="caja_carr1">
+                        {% if y.imagen1 %}
+                          <img src="{{ y.imagen1.url }}" width="100%" height="100%">
+                        {% else %}
+                        {% endif %}
+                      </div>
+                    </center>
+                  </div>
+                  <div class="carousel-item">
+                    <center>
+                      <div id="caja_carr1">
+                        {% if y.imagen2 %}
+                          <img src="{{ y.imagen2.url }}" width="100%" height="100%">
+                        {% else %}
+                        {% endif %}
+                      </div>
+                    </center>
+                  </div>
+                  <div class="carousel-item">
+                    <center>
+                      <div id="caja_carr1">
+                        {% if y.imagen3 %}
+                          <img src="{{ y.imagen3.url }}" width="100%" height="100%">
+                        {% else %}
+                        {% endif %}
+                      </div>
+                    </center>
+                  </div>
+                  <div class="carousel-item">
+                    <center>
+                      <div id="caja_carr1">
+                        {% if y.imagen4 %}
+                          <img src="{{ y.imagen4.url }}" width="100%" height="100%">
+                        {% else %}
+                        {% endif %}
+                      </div>
+                    </center>
+                  </div>
+                  <div class="carousel-item">
+                    <center>
+                      <div id="caja_carr1">
+                        {% if y.imagen5 %}
+                          <img src="{{ y.imagen5.url }}" width="100%" height="100%">
+                        {% else %}
+                        {% endif %}
+                      </div>
+                    </center>
+                  </div>
+                </div>
+                <!--Controles NEXT y PREV-->
+                <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!--Controles de indicadores-->
+                <br>
+                <center><button id="boton2" style="width: 50%;" onclick="Volver2()">Volver</button></center>
+              </div>
+              
+            {% else %}
+            {% endif %}
+          {% endfor %}
+        {% for y in datoss %}
+          {% if y.usuario == x.usuario %}
+            <div id="caja1">
+              <br>
+              <h2>Otros datos</h2>
+              <div id="caja3">
+                <br>
+                <h1>{{y.otros_datos}}</h1>
+              </div>
+              <br><br><br><br><br><br><br>
+            </div>
+          {% else %}
+          {% endif %}
+        {% endfor %}
+        <br>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<br>
+
+{% endblock %}
