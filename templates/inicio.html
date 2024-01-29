@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'javascript/funciones.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+
+{% if user.is_authenticated %}
+{% else %}
+  <div id="caja_des">
+    <h3>
+      Encuentra a músicos similares, eventos musicales, 
+      salas de ensayo, y más, en todo Chile.
+    </h3>
+    <hr>
+    <img id="img_portada" src="{% static 'Imagenes/Fondo descripcion negro 5.png' %}">
+  </div>
+  <br>
+{% endif %}
+<div id="caja1">
+  <h3>Músicos populares</h3>
+  <hr>
+  <div id="carousel1" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <center>
+          <div id="caja_carr1">
+            <img src="{% static 'Imagenes/Perfil9.jpg' %}" id="imagen_carr">
+            <div id="caja_carr2">
+              <br>
+              <h2>Sebastian22</h2>
+              <h2>Instrumento: Guitarra</h2>
+              <h2>Estilo: Rock Pop</h2>
+              <h2>Región Metropolitana</h2>
+              {% if user.is_authenticated %}
+                <a href="/musicos/contactar/?contacto=Sebastian22" target="_self"><button id="boton3">Contactar</button></a>
+                <!--<button id="boton3">Eliminar</button>-->
+              {% else %}
+                <a><button id="boton3" onclick="DebeIniciar()">Contactar</button></a>
+              {% endif %}
+            </div>
+          </div>
+        </center>
+      </div>
+      <div class="carousel-item">
+        <center>
+          <div id="caja_carr1">
+            <img src="{% static 'Imagenes/Perfil5.jpg' %}" id="imagen_carr">
+            <div id="caja_carr2">
+              <br>
+              <h2>Gabriel_4545</h2>
+              <h2>Instrumento: Chelo</h2>
+              <h2>Estilo: Clásica</h2>
+              <h2>Región Metropolitana</h2>
+              {% if user.is_authenticated %}
+                <a href="/musicos/contactar/?contacto=Gabriel_4545" target="_self"><button id="boton3">Contactar</button></a>
+                <!--<button id="boton3">Eliminar</button>-->
+              {% else %}
+                <a><button id="boton3" onclick="DebeIniciar()">Contactar</button></a>
+              {% endif %}
+            </div>
+          </div>
+        </center>
+      </div>
+      <div class="carousel-item">
+        <center>
+          <div id="caja_carr1">
+            <img src="{% static 'Imagenes/Perfil10.jpg' %}" id="imagen_carr">
+            <div id="caja_carr2">
+              <br>
+              <h2>Felipe123</h2>
+              <h2>Instrumento: Bateria</h2>
+              <h2>Estilo: Metal</h2>
+              <h2>Región Metropolitana</h2>
+              
+              {% if user.is_authenticated %}
+                {% with encontrado=False %}
+                    {% for x in contactos %}
+                        {% if x.contacto == "Felipe123" %}
+                            <h2>{{ x.usuario }}: {{ x.contacto }}</h2>
+                            {% with encontrado=True %}
+                            
+                            {% endwith %}
+                            
+                        {% endif %}
+                    {% endfor %}
+                    <h2>{{encontrado}}</h2>
+                    {% if not encontrado %}
+                        <a href="/musicos/contactar/?contacto=Felipe123" target="_self"><button id="boton3">Contactar</button></a>
+                        <!--<button id="boton3">Eliminar</button>-->
+                    {% elif encontrado %}
+                        <a><button id="boton3" onclick="ContactoExistente()">Contactar</button></a>
+                    {% endif %}
+                {% endwith %}
+            {% else %}
+                <a><button id="boton3" onclick="DebeIniciar()">Contactar</button></a>
+            {% endif %}
+
+
+
+            </div>
+          </div>
+        </center>
+      </div>
+    </div>
+    <!--Controles NEXT y PREV-->
+    <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<br>
+<div id="caja_nov"> <!--Caja de novedades como videos nuevos-->
+  <h3>Novedades</h3>
+  <hr>
+  <div class="row">
+    <div class="col-lg-4" id="caja_resp">
+      <label>Anuncios</label>
+      <div id="caja2">
+        {% if user.is_authenticated %}
+          <a id="link_anuncio" href="/inicio/anunciar/{{user.username}}">
+            <button id="boton2">Publicar aunucio</button>
+          </a>
+        {% else %}
+          <a>
+            <button id="boton2" onclick="DebeIniciar()">Publicar aunucio</button>
+          </a>
+        {% endif %}
+        {% for x in anuncios %}
+          <button id="boton_anuncio">
+            <p>{{x.usuario}}: {{x.anuncio}}</p>
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-lg-4" id="caja_resp">
+      <label>Videos nuevos</label>
+      <div id="caja2">
+        <p>Felipe123</p>
+        <center>
+          <video id="video" src="{% static 'Imagenes/Video taller guitarra duoc.mp4' %}" controls>
+            <source src="mov_bbb.mp4" type="video/mp4">
+            <source src="mov_bbb.ogg" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+        </center>
+        <p>Gabriel_4545</p>
+        <center>
+          <video id="video" src="{% static 'Imagenes/Video taller guitarra duoc.mp4' %}" controls>
+            <source src="mov_bbb.mp4" type="video/mp4">
+            <source src="mov_bbb.ogg" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+        </center>
+      </div>
+      <br><br>
+    </div>
+    <div class="col-lg-4" id="caja_resp">
+      <label>Temas nuevos</label>
+      <div id="caja2">
+        <p>Felipe123</p>
+        <center>
+          <audio src="{% static 'Imagenes/prueba de violin 5.mp3' %}" controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </center>
+        <p>Gabriel_4545</p>
+        <center>
+          <audio src="{% static 'Imagenes/prueba de violin 5.mp3' %}" controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </center>
+      </div>
+      <br><br>
+    </div>
+  </div>
+</div>
+<br>
+<footer>
+  <div id="caja1">
+    <h3>Footer</h3>
+    <hr>
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        {% if user.is_authenticated %}
+        <center><a href="/inicio/contactanos/{{user.username}}"><button id="boton_fut"><h1>Contáctanos</h1></button></a></center>
+        {% else %}
+        <center><a><button id="boton_fut" onclick="DebeIniciar()()"><h1>Contáctanos</h1></button></a></center>
+        {% endif %}
+        <center><a href="/redes/"><button id="boton_fut"><h1>Redes sociales</h1></button></a></center>
+        <center><a href="/manual/"><button id="boton_fut"><h1>Manual</h1></button></a></center>
+        <center><a href="/acercade/"><button id="boton_fut"><h1>Acerca de nosotros</h1></button></a></center>
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

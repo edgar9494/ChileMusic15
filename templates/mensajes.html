@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+  <script>
+    function mostrar_chat(contacto) {
+      if (window.innerWidth < 1001) {
+        document.getElementById('caja_contactos').style.display = 'none';
+      }
+      // Oculta todos los chats primero
+      var chats = document.querySelectorAll('.caja_chat');
+      for (var i = 0; i < chats.length; i++) {
+        chats[i].style.display = 'none';
+      }
+      // Muestra el chat del contacto seleccionado
+      var chat = document.querySelector(`.caja_chat_${contacto}`);
+      if (chat) {
+        chat.style.display = 'block';
+      }
+    }
+  </script>
+  <style>
+    @media(min-width: 1001px)
+    {
+      .caja_chat 
+      {
+      display: none;
+      border: 1px solid grey;
+      border-radius: 5px;
+      background-color: #101010;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      padding: 20px;
+      width: 68%;
+      height: 600px;
+      float: right;
+      overflow: auto;
+      }
+    }
+    @media (max-width: 1000px)
+    {
+      .caja_chat 
+      {
+      display: none;
+      border: 1px solid grey;
+      border-radius: 5px;
+      background-color: #101010;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      padding: 20px;
+      width: 100%;
+      height: 600px;
+      float: right;
+      overflow: auto;
+      }
+    }
+    
+  </style>
+  <div id="caja_contactos" style="overflow: auto;">
+    <h3>Contactos</h3>
+    <hr>
+    {% for x in Contactos %}
+      <button id="boton_con" data-contacto="{{ x.contacto }}" onclick="mostrar_chat('{{ x.contacto }}')">
+        {% for z in Musicos %}
+          {% if x.contacto == z.usuario %}
+            <img src="{{z.imagen.url}}" id="img_con">
+          {% else %}
+              
+          {% endif %}
+        {% endfor %}
+        <!--<img src="{% static 'Imagenes/Perfil5.jpg' %}" id="img_con">-->
+        <text id="text2">{{x.contacto}}</text>
+      </button>
+    {% endfor %}
+  </div>
+  {% for x in Contactos %}
+    <div class="caja_chat caja_chat_{{x.contacto}}">
+      <h3>{{x.contacto}}</h3>
+      <div id="caja_editar">
+        <a href="1/eliminar_contacto/" style="float: left;">
+          <button id="boton2">Eliminar</button>
+        </a>
+      </div>
+      <hr>
+      <div class="caja_chat2">
+        {% for y in Mensajes %}
+          {% if y.usuario == user.username %}
+            {% if y.para == x.contacto %}
+              <input class="mensaje" value="{{y.usuario}}" style="display: none;">
+              <input class="mensaje" value="{{y.para}}" style="display: none;">
+              <input class="mensaje" value="{{y.mensaje}}" readonly>
+              <br>
+              <input class="fecha" value="{{y.fecha}}" readonly>
+              <br><br>
+            {% endif %}
+          {% endif %}
+          {% if y.para == user.username %}
+            {% if y.usuario == x.contacto %}
+              <br>
+              <input class="mensaje2" value="{{y.usuario}}" style="display: none;">
+              <input class="mensaje2" value="{{y.para}}" style="display: none;">
+              <br>
+              <input class="mensaje2" value="{{y.mensaje}}" readonly>
+              <br>
+              <input class="fecha2" value="{{y.fecha}}" readonly>
+              <br><br>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <a href="/mensajes/enviar/?contacto={{ x.contacto }}" target="_self">
+        <button id="boton2">Enviar mensaje</button>
+      </a>
+    </div>
+  {% endfor %}
+{% endblock %}

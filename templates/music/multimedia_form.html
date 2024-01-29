@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+<div id="caja1"> 
+  <form action ="" method="post" enctype="multipart/form-data" novalidate>
+    <div id="caja_editar">
+      <a href="editar_multimedia/">
+        <button type="submit" id="boton2">Guardar</button>
+      </a>
+    </div>
+    <br>
+    <div class="row">
+      {%csrf_token%}
+      <!--{{ form.as_p }}-->
+      <div class="col-lg-4" id="cajares">
+        <input value="{{user.username}}" name="usuario" readonly style="display: none;">
+        <label>Imagen1</label>
+        <input type="file" name="imagen1">
+        <label>Imagen2</label>
+        <input type="file" name="imagen2">
+        <label>Imagen3</label>
+        <input type="file" name="imagen3">
+        <label>Imagen4</label>
+        <input type="file" name="imagen4">
+        <label>Imagen5</label>
+        <input type="file" name="imagen5">
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Video1</label>
+        <input type="file" name="video1">
+        <label>Video2</label>
+        <input type="file" name="video2">
+        <label>Video3</label>
+        <input type="file" name="video3">
+        <label>Video4</label>
+        <input type="file" name="video4">
+        <label>Video5</label>
+        <input type="file" name="video5">
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Audio1</label>
+        <input type="file" name="audio1">
+        <label>Audio2</label>
+        <input type="file" name="audio2">
+        <label>Audio3</label>
+        <input type="file" name="audio3">
+        <label>Audio4</label>
+        <input type="file" name="audio4">
+        <label>Audio5</label>
+        <input type="file" name="audio5">
+      </div>
+    </div>
+    <input value="{{user.username}}" name="usuario" style="display: none;">
+  </form>
+</div> 
+   
+{%endblock%}
+
+

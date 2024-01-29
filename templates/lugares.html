@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+
+<div id="caja0">
+    <div id="caja_buscar" style="height: 506px;">
+      <h3>Buscador</h3>
+      <hr>
+      <label>Tipo</label>
+      <select id="tipo2">
+        <option value="">---</option>
+        <option value="1">Evento</option>
+        <option value="2">Tienda</option>
+        <option value="3">Sala de ensayo</option>
+      </select>
+      <br>
+      <label>Región</label>
+      <select id="region" name="region">
+        <option value="">---</option>
+        <option value="1">I Región</option>
+        <option value="2">II Región</option>
+        <option value="3">III Región</option>
+        <option value="4">IV Región</option>
+        <option value="5">V Región</option>
+        <option value="6">VI Región</option>
+        <option value="7">VII Región</option>
+        <option value="8">VIII Región</option>
+        <option value="9">IX Región</option>
+        <option value="10">X Región</option>
+        <option value="11">XI Región</option>
+        <option value="12">XII Región</option>
+        <option value="13">Region Metropolitana</option>
+        <option value="14">XIV Región</option>
+        <option value="15">XV Región</option>
+        <option value="16">XVI Región</option>
+      </select>
+      <br>
+      <label>Comuna</label>
+      <select id="comu" name="comu">
+        <option value="---">---</option>
+        <option value="Santiago">Santiago</option>
+        <option value="Conchalí">Conchalí</option>
+        <option value="Huechuraba">Huechuraba</option>
+        <option value="Independencia">Independencia</option>
+        <option value="Quilicura">Quilicura</option>
+        <option value="Recoleta">Recoleta</option>
+        <option value="Renca">Renca</option>
+        <option value="Las Condes">Las Condes</option>
+        <option value="Lo Barnechea">Lo Barnechea</option>
+        <option value="Providencia">Providencia</option>
+        <option value="Vitacura">Vitacura</option>
+        <option value="La Reina">La Reina</option>
+        <option value="Macul">Macul</option>
+        <option value="Ñuñoa">Ñuñoa</option>
+        <option value="Peñalolén">Peñalolén</option>
+        <option value="La Florida">La Florida</option>
+        <option value="La Granja">La Granja</option>
+        <option value="El Bosque">El Bosque</option>
+        <option value="La Cisterna">La Cisterna</option>
+        <option value="La Pintana">La Pintana</option>
+        <option value="San Ramón">San Ramón</option>
+        <option value="Lo Espejo">Lo Espejo</option>
+        <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
+        <option value="San Joaquín">San Joaquín</option>
+        <option value="San Miguel">San Miguel</option>
+        <option value="Cerrillos">Cerrillos</option>
+        <option value="Estación Central">Estación Central</option>
+        <option value="Maipú">Maipú</option>
+        <option value="Cerro Navia">Cerro Navia</option>
+        <option value="Lo Prado">Lo Prado</option>
+        <option value="Pudahuel">Pudahuel</option>
+        <option value="Quinta Normal">Quinta Normal</option>
+      </select>
+      <br>
+      <label>Estilo</label>
+      <select id="estilo" name="estilo">
+        <option value="---">---</option>
+        <option value="Pop">Pop</option>
+        <option value="Rock">Rock</option>
+        <option value="Metal">Metal</option>
+        <option value="Electrónica">Electrónica</option>
+        <option value="Clásica">Clásica</option>
+        <option value="Blues">Blues</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Hip hop">Hip hop</option>
+        <option value="Trap">Trap</option>
+        <option value="Reggaeton">Reggaeton</option>
+        <option value="Reggae">Reggae</option>
+        <option value="Cumbia">Cumbia</option>
+      </select>
+      <br><br><br>
+      <button id="boton2" onclick="buscador()">Buscar</button>
+      <br><br>
+    </div>
+    
+    <div id="caja_buscar2" style="height: 510px; background-color: bisque">
+      
+      <div id="caja_mapa" style="display: none;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d850689.3889873757!2d-71.30253590432802!3d-33.605163691623154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96626f6a7df81e51%3A0x60cdc26d444b83da!2sRegi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1658802634525!5m2!1ses!2scl" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <script>
+      var mapa;
+    
+      function iniciarMapa() {
+
+        var coordenadas1 = { lat: -33.45600660014808, lng: -70.63999301211219 };
+        var coordenadas2 = { lat: -33.458148730749855,  lng: -70.62892525772187 };
+        var coordenadas3 = { lat: -33.436043, lng: -70.642089 };
+
+        var coordenadas = { lat: -33.447188, lng: -70.669422 }; // Reemplaza TU_LATITUD y TU_LONGITUD con las coordenadas deseadas
+        mapa = new google.maps.Map(document.getElementById('caja_buscar2'), {
+          center: coordenadas,
+          zoom: 10 // Ajusta el nivel de zoom según tus necesidades
+        });
+    
+        var marcador = new google.maps.Marker({
+          position: coordenadas,
+          map: mapa,
+          title: 'Ubicación'
+        });
+
+        var iconoPersonalizado = {
+          url: "{% static 'Imagenes/Marcador Azul.png' %}", // URL de la imagen personalizada
+          scaledSize: new google.maps.Size(60, 60), // Tamaño personalizado del icono
+          origin: new google.maps.Point(0, 0), // Origen de la imagen (parte superior izquierda)
+          anchor: new google.maps.Point(20, 40) // Punto de anclaje del icono
+        };
+      
+        // Define la etiqueta personalizada del marcador
+        var etiquetaPersonalizada = {
+          text: 'CreaRock',
+          color: 'white',
+          fontSize: '12px',
+          fontWeight: 'bold',
+        };
+
+        var iconoPersonalizado2 = {
+          url: "{% static 'Imagenes/Marcador Verde.png' %}", // URL de la imagen personalizada
+          scaledSize: new google.maps.Size(60, 60), // Tamaño personalizado del icono
+          origin: new google.maps.Point(0, 0), // Origen de la imagen (parte superior izquierda)
+          anchor: new google.maps.Point(20, 40) // Punto de anclaje del icono
+        };
+      
+        // Define la etiqueta personalizada del marcador
+        var etiquetaPersonalizada2 = {
+          text: 'AudioMusica',
+          color: 'white',
+          fontSize: '12px',
+          fontWeight: 'bold',
+        };
+
+        var iconoPersonalizado3 = {
+          url: "{% static 'Imagenes/Marcador Amarillo.png' %}", // URL de la imagen personalizada
+          scaledSize: new google.maps.Size(60, 60), // Tamaño personalizado del icono
+          origin: new google.maps.Point(0, 0), // Origen de la imagen (parte superior izquierda)
+          anchor: new google.maps.Point(20, 40) // Punto de anclaje del icono
+        };
+      
+        // Define la etiqueta personalizada del marcador
+        var etiquetaPersonalizada3 = {
+          text: 'RockFest',
+          color: 'white',
+          fontSize: '12px',
+          fontWeight: 'bold',
+        };
+
+        var marcador1 = new google.maps.Marker({
+        position: coordenadas1,
+        map: mapa,
+        title: 'Marcador 1',
+        icon: iconoPersonalizado, // Establece el icono personalizado
+        label: etiquetaPersonalizada // Establece la etiqueta personalizada
+        });
+
+        var marcador2 = new google.maps.Marker({
+          position: coordenadas2,
+          map: mapa,
+          title: 'Marcador 2',
+          icon: iconoPersonalizado2, // Establece el icono personalizado
+          label: etiquetaPersonalizada2 // Establece la etiqueta personalizada
+        });
+
+        var marcador3 = new google.maps.Marker({
+          position: coordenadas3,
+          map: mapa,
+          title: 'Marcador 3',
+          icon: iconoPersonalizado3, // Establece el icono personalizado
+          label: etiquetaPersonalizada3 // Establece la etiqueta personalizada
+        });
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMapa"></script>
+  </div>
+  <br><br>
+
+  <label></label>
+{% endblock %}

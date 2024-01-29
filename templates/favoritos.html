@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+<div id="caja1">
+    <div class="row">
+      <div class="col-lg-4" id="cajares">
+        <label>Usuarios</label>
+        <div id="caja2">
+          <button id="boton_con">
+            <img src="{% static 'Imagenes/Perfil2.jpg' %}" id="img_con">
+            <p>Camilo_1213 </p>
+          </button>
+        </div>
+        <br>
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Videos</label>
+        <div id="caja2"></div>
+        <br>
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Audios</label>
+        <div id="caja2"></div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <label></label>
+  <div id="caja1"> <!--Caja de instrumentos-->
+    <div class="row">
+      <div class="col-lg-4" id="cajares">
+        <label>Eventos</label>
+        <div id="caja2"></div>
+        <br>
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Tiendas</label>
+        <div id="caja2"></div>
+        <br>
+      </div>
+      <div class="col-lg-4" id="cajares">
+        <label>Salas de ensayo</label>
+        <div id="caja2"></div>
+        <br>
+      </div>
+    </div>
+  </div>
+{% endblock %}

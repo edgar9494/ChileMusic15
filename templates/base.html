@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  {% load static %}
+  <head>
+    {% block title %}<title>ChileMusic</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/estilo oscuro.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map.css' %}">
+    <script src="{% static 'javascript/funciones.js' %}"></script>
+  </head>
+  <body>
+    <header>
+      <div id="menu">
+        <img id="logo" src="{% static 'Imagenes/Logo chile 7.png' %}">
+        <img id="letras" src="{% static 'Imagenes/Logo01.png' %}">
+        <input id="check1" type="checkbox" onclick="burger()">
+        <label id="burger" for="check1" ><img src="{% static 'Imagenes/Burger 3.png' %}" width="55px" height="55px"></label>
+        <nav id="nav1">
+          <ul id="ul1">
+            <li id="li1"><a id="a1" href="{% url 'inicio' %}">Inicio</a></li>
+            <li id="li1"><a id="a1" href="{% url 'musicos' %}">Músicos</a></li>
+            <li id="li1"><a id="a1" href="{% url 'lugares' %}">Lugares</a></li>
+            <li id="li1"><a id="a1" href="">Cuenta</a>
+              <ul id="ul2">
+                {% if user.is_authenticated %}
+                <li id="li2"><a id="a2" href="{% url 'perfil' %}">Perfil</a></li>
+                <li id="li2"><a id="a2" href="{% url 'mensajes' %}">Mensajes</a></li>
+                <li id="li2"><a id="a2" href="{% url 'ajustes' %}">Ajustes</a></li>
+                <li id="li2"><a id="a2" href="{% url 'admin:index' %}">Admin</a></li>
+                <li id="li2"><a id="a2" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                {% else %}
+                <li id="li2"><a id="a2" href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li id="li2"><a id="a2" href="{% url 'signup' %}">Registrarse</a></li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header><br>
+    <script>
+      if(window.innerWidth < 600)
+      {
+        document.getElementById('logo').style.display = 'none';
+        document.getElementById('letras').style.marginTop = '20px';
+        document.getElementById('letras').style.marginLeft = '10px';
+      }
+    </script>
+    {% block content %}{% endblock %}
+  </body>
+</html>
